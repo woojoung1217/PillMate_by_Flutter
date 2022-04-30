@@ -8,6 +8,7 @@ class DoryThemes {
         splashColor: Colors.white,
         fontFamily: 'GmarketSansTTF',
         textTheme: _textTheme,
+        appBarTheme: _appBarTheme,
         brightness: Brightness.light,
       );
   static ThemeData get darkTheme => ThemeData(
@@ -17,6 +18,12 @@ class DoryThemes {
         textTheme: _textTheme,
         brightness: Brightness.dark,
       );
+  static const AppBarTheme _appBarTheme = AppBarTheme(
+    backgroundColor: Colors.white,
+    iconTheme: IconThemeData(color: DoryColors.primaryColor),
+    elevation: 0,
+  );
+
   static const TextTheme _textTheme = TextTheme(
     headline4: TextStyle(
       fontSize: 32,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DoryColors {
   static const int _primaryColorValue = 0xFF151515;
+// 0xFF151515;
   static const primaryColor = Color.fromARGB(255, 21, 21, 21);
 
   static const MaterialColor primaryMeterialColor = MaterialColor(
