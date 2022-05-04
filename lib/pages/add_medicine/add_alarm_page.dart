@@ -46,8 +46,9 @@ class AddAlarmPage extends StatelessWidget {
       // 완료 버튼
       bottomNavigationBar: BottomSubmitButton(
           onPressed: () {
-            //add alarm
-            // save image
+            //1. add alarm
+            //2. save image
+            //3. medicine model (local db = hive)
           },
           text: '완료'),
     );
