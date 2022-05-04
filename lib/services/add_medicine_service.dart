@@ -22,4 +22,11 @@ class AddMedicineService with ChangeNotifier {
     _alarms.remove(alarmTime);
     notifyListeners();
   }
+
+  void setAlarm({required String prevTime, required DateTime setTime}) {
+    _alarms.remove(prevTime);
+    final setTimeStr = DateFormat('HH:mm').format(setTime);
+    _alarms.add(setTimeStr);
+    notifyListeners();
+  }
 }

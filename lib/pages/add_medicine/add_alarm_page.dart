@@ -43,7 +43,13 @@ class AddAlarmPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomSubmitButton(onPressed: () {}, text: '완료'),
+      // 완료 버튼
+      bottomNavigationBar: BottomSubmitButton(
+          onPressed: () {
+            //add alarm
+            // save image
+          },
+          text: '완료'),
     );
   }
 
@@ -98,7 +104,8 @@ class AlarmBox extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return TimePickerBottomSheet(
-                    initialDateTime: initTime,
+                    initialTime: time,
+                    service: service,
                   );
                 },
               );
@@ -111,22 +118,29 @@ class AlarmBox extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class TimePickerBottomSheet extends StatelessWidget {
-  const TimePickerBottomSheet({
+  TimePickerBottomSheet({
     Key? key,
-    required this.initialDateTime,
+    required this.initialTime,
+    required this.service,
   }) : super(key: key);
 
-  final DateTime initialDateTime;
+  final String initialTime;
+  final AddMedicineService service;
+  DateTime? _setdateTime;
 
   @override
   Widget build(BuildContext context) {
+    final initialDateTime = DateFormat('HH:mm').parse(initialTime);
     return BottomSheetBody(
       children: [
         SizedBox(
           height: 200,
           child: CupertinoDatePicker(
-            onDateTimeChanged: (dataTime) {},
+            onDateTimeChanged: (dateTime) {
+              _setdateTime = dateTime;
+            },
             mode: CupertinoDatePickerMode.time,
             initialDateTime: initialDateTime,
           ),
@@ -140,7 +154,7 @@ class TimePickerBottomSheet extends StatelessWidget {
               child: SizedBox(
                 height: submitButtonHeight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   child: const Text('취소'),
                   style: ElevatedButton.styleFrom(
                     textStyle: Theme.of(context).textTheme.subtitle1,
@@ -157,7 +171,13 @@ class TimePickerBottomSheet extends StatelessWidget {
               child: SizedBox(
                 height: submitButtonHeight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    service.setAlarm(
+                      prevTime: initialTime,
+                      setTime: _setdateTime ?? initialDateTime,
+                    );
+                    Navigator.pop(context);
+                  },
                   child: const Text('선택'),
                   style: ElevatedButton.styleFrom(
                     textStyle: Theme.of(context).textTheme.subtitle1,
@@ -191,7 +211,7 @@ class AddAlarmButton extends StatelessWidget {
         children: const [
           Expanded(
             flex: 1,
-            child: Icon(CupertinoIcons.plus_circle_fill),
+            child: Icon(CupertinoIcons.alarm_fill),
           ),
           Expanded(
             flex: 5,
