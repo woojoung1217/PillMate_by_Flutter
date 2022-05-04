@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 #
 
-# PILL MATE 💊 소개 
+# PIll Mate 💊 소개 
  - 약품 섭취를 편하게 복용할 수 있도록 도와주고  
  - 약국에 의약품 정보를 제공받을 수 있는 사용자 편의를 위한 서비스 
 
