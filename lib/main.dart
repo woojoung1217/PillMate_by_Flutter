@@ -9,6 +9,7 @@ void main() {
   final notification = DoryNotificationService();
   notification.initializeTimeZone();
   notification.initializeNotification();
+
   runApp(const MyApp());
 }
 

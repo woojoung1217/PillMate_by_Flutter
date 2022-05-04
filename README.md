@@ -1,4 +1,4 @@
-# dory
+
 
 A new Flutter project.
 
@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 #
 
-# PILL MATE 💊 소개 
+# PIll Mate 💊 소개 
  - 약품 섭취를 편하게 복용할 수 있도록 도와주고  
  - 약국에 의약품 정보를 제공받을 수 있는 사용자 편의를 위한 서비스 
 
@@ -41,7 +41,7 @@ lib
 		(서비스 로직)
 ```
 
-## 1) create medicine screen
+## 1) create medicine screen(참고용 스크린) 
   
 
   ![initial](https://adbrdev.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9790ca0d-ece9-4cf8-9158-0598f1258868%2FUntitled.png?table=block&id=5c3aec00-e3cb-497a-8e24-6f9fc4d91086&spaceId=e6d84797-ce36-4dfc-abe5-8623d02aeeeb&width=2000&userId=&cache=v2)
