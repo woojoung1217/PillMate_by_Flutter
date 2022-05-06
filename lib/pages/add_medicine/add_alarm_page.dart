@@ -6,6 +6,7 @@ import 'package:dory/components/dory_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../services/add_medicine_service.dart';
 import 'components/add_page_widget.dart';
 
@@ -47,6 +48,22 @@ class AddAlarmPage extends StatelessWidget {
       bottomNavigationBar: BottomSubmitButton(
           onPressed: () {
             //1. add alarm
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('알람 권한이 없습니다.'),
+                    TextButton(
+                      onPressed: () {
+                        openAppSettings();
+                      },
+                      child: const Text('설정 창으로 이동'),
+                    ),
+                  ],
+                ),
+              ),
+            );
             //2. save image
             //3. medicine model (local db = hive)
           },
