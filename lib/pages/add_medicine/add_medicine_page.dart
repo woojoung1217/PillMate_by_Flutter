@@ -148,7 +148,10 @@ class _MedicineImageButtonState extends State<MedicineImageButton> {
         }
         Navigator.maybePop(context);
       },
-    );
+    ).onError((error, stackTrace) {
+      Navigator.pop(context);
+      showPermissonDenide(context, permission: "카메라 및 갤러리 접근");
+    });
   }
 }
 

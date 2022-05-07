@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
+          // 플로팅 버튼 위치
           bottomNavigationBar: _buildBottomAppBar(),
         ),
       ),
@@ -72,15 +73,15 @@ class _HomePageState extends State<HomePage> {
                       : Colors.grey[350],
                 ),
               ),
-              // CupertinoButton(
-              //   onPressed: () => _onCurrentPage(2),
-              //   child: Icon(
-              //     Icons.local_pharmacy,
-              //     color: _currentIndex == 2
-              //         ? DoryColors.primaryColor
-              //         : Colors.grey[350],
-              //   ),
-              // ),
+              CupertinoButton(
+                onPressed: () => _onCurrentPage(2),
+                child: Icon(
+                  Icons.local_pharmacy,
+                  color: _currentIndex == 2
+                      ? DoryColors.primaryColor
+                      : Colors.grey[350],
+                ),
+              ),
             ],
           ),
         ));

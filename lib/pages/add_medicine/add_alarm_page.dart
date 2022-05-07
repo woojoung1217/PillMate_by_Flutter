@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:dory/components/dory_colors.dart';
 import 'package:dory/components/dory_constants.dart';
 import 'package:dory/components/dory_widgets.dart';
+import 'package:dory/main.dart';
+import 'package:dory/models/medicine.dart';
+import 'package:dory/services/dory_file_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -46,26 +49,34 @@ class AddAlarmPage extends StatelessWidget {
       ),
       // 완료 버튼
       bottomNavigationBar: BottomSubmitButton(
-          onPressed: () {
-            //1. add alarm
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('알람 권한이 없습니다.'),
-                    TextButton(
-                      onPressed: () {
-                        openAppSettings();
-                      },
-                      child: const Text('설정 창으로 이동'),
-                    ),
-                  ],
-                ),
-              ),
+          onPressed: () async {
+            bool result = false;
+            for (var alarm in service.alarms) {
+              result = await notification.addNotifcication(
+                medicineId: 0,
+                alarmTimeStr: alarm,
+                // medicineId: null,
+                title: '$alarm 약 먹을 시간이에요',
+                body: '$medicineName 복약했다고 알려주세요',
+              );
+            }
+
+            if (!result) {
+              showPermissonDenide(context, permission: "알람");
+            }
+            String? imageFilePath;
+            // save Images(by local directory)
+            if (medicineImage != null) {
+              imageFilePath = await saveImageToLocalDirectory(medicineImage!);
+            }
+
+            // 3
+            final medicine = Medicine(
+              id: 0,
+              name: medicineName,
+              imagePath: imageFilePath,
+              alarms: service.alarms,
             );
-            //2. save image
-            //3. medicine model (local db = hive)
           },
           text: '완료'),
     );
