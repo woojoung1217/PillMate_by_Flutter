@@ -53,7 +53,7 @@ class AddAlarmPage extends StatelessWidget {
             bool result = false;
             for (var alarm in service.alarms) {
               result = await notification.addNotifcication(
-                medicineId: 0,
+                medicineId: medicineRepository.newId,
                 alarmTimeStr: alarm,
                 // medicineId: null,
                 title: '$alarm 약 먹을 시간이에요',
@@ -62,7 +62,7 @@ class AddAlarmPage extends StatelessWidget {
             }
 
             if (!result) {
-              showPermissonDenide(context, permission: "알람");
+              return showPermissonDenide(context, permission: "알람");
             }
             String? imageFilePath;
             // save Images(by local directory)
@@ -72,11 +72,13 @@ class AddAlarmPage extends StatelessWidget {
 
             // 3
             final medicine = Medicine(
-              id: 0,
+              id: medicineRepository.newId,
               name: medicineName,
               imagePath: imageFilePath,
-              alarms: service.alarms,
+              alarms: service.alarms.toList(),
             );
+            medicineRepository.addMedicine(medicine);
+            Navigator.popUntil(context, (route) => route.isFirst);
           },
           text: '완료'),
     );

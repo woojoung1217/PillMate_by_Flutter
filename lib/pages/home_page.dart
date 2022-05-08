@@ -1,4 +1,5 @@
 import 'package:dory/components/dory_colors.dart';
+import 'package:dory/components/dory_constants.dart';
 import 'add_medicine/add_medicine_page.dart';
 import 'package:dory/pages/add_medicine/add_medicine_page.dart';
 import 'package:dory/pages/history/history.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final _pages = [
-    const TodayPage(),
+    TodayPage(),
     const HistoryPage(),
     // 약국창 추가
     // const PharmacyPage(),
@@ -26,65 +27,60 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        top: false,
-        child: Scaffold(
-          appBar: AppBar(),
-          body: _pages[_currentIndex],
-          floatingActionButton: FloatingActionButton(
-            onPressed: _onAddMedicine,
-            child: const Icon(CupertinoIcons.add),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          // 플로팅 버튼 위치
-          bottomNavigationBar: _buildBottomAppBar(),
-        ),
+    return Scaffold(
+      body: Padding(
+        padding: pagePadding,
+        child: SafeArea(child: _pages[_currentIndex]),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onAddMedicine,
+        child: const Icon(CupertinoIcons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // 플로팅 버튼 위치
+      bottomNavigationBar: _buildBottomAppBar(),
     );
   }
 
   BottomAppBar _buildBottomAppBar() {
     return BottomAppBar(
-        elevation: 0,
+        // elevation: 0,
         child: Container(
-          color: Colors.white,
-          height: kBottomNavigationBarHeight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CupertinoButton(
-                onPressed: () => _onCurrentPage(0),
-                child: Icon(
-                  CupertinoIcons.checkmark,
-                  color: _currentIndex == 0
-                      ? DoryColors.primaryColor
-                      : Colors.grey[350],
-                ),
-              ),
-              CupertinoButton(
-                onPressed: () => _onCurrentPage(1),
-                child: Icon(
-                  CupertinoIcons.text_badge_checkmark,
-                  color: _currentIndex == 1
-                      ? DoryColors.primaryColor
-                      : Colors.grey[350],
-                ),
-              ),
-              CupertinoButton(
-                onPressed: () => _onCurrentPage(2),
-                child: Icon(
-                  Icons.local_pharmacy,
-                  color: _currentIndex == 2
-                      ? DoryColors.primaryColor
-                      : Colors.grey[350],
-                ),
-              ),
-            ],
+      color: Colors.white,
+      height: kBottomNavigationBarHeight,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CupertinoButton(
+            onPressed: () => _onCurrentPage(0),
+            child: Icon(
+              CupertinoIcons.checkmark,
+              color: _currentIndex == 0
+                  ? DoryColors.primaryColor
+                  : Colors.grey[350],
+            ),
           ),
-        ));
+          CupertinoButton(
+            onPressed: () => _onCurrentPage(1),
+            child: Icon(
+              CupertinoIcons.text_badge_checkmark,
+              color: _currentIndex == 1
+                  ? DoryColors.primaryColor
+                  : Colors.grey[350],
+            ),
+          ),
+          // CupertinoButton(
+          //   onPressed: () => _onCurrentPage(2),
+          //   child: Icon(
+          //     Icons.local_pharmacy,
+          //     color: _currentIndex == 2
+          //         ? DoryColors.primaryColor
+          //         : Colors.grey[350],
+          //   ),
+          // ),
+        ],
+      ),
+    ));
   }
 
   void _onCurrentPage(int pageIndex) {
