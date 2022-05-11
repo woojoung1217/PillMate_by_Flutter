@@ -22,7 +22,6 @@ class MedicineRepository {
 
   void deleteMedicine(int key) async {
     await medicineBox.delete(key);
-
     log('[deleteMedicineß] delete (key:$key)');
     log('result ${medicineBox.values.toList()}');
   }
